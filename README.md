@@ -1,2 +1,2 @@
 # PhotoAlbum
-With Django VueJS and MongoDB
+With Django, VueJS and MongoDB
