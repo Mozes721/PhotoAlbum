@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
-    <table class="table">
+    <table class="table"> 
       <thead>
         <th>Name</th>
         <th>About</th>
