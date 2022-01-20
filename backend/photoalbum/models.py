@@ -6,7 +6,7 @@ from djongo.storage import GridFSStorage
 from project.settings import BASE_DIR
 import datetime
 
-
+ 
 # Define your GrifFSStorage instance 
 grid_fs_storage = GridFSStorage(collection='photoalbum_photo', base_url=''.join([BASE_DIR, 'photoalbum_photo/']))
 
