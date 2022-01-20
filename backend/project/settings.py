@@ -52,12 +52,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+'DEFAULT_AUTHENTICATION_CLASSES': (
+    'rest_framework.authentication.SessionAuthentication',
+),
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -99,7 +98,7 @@ DATABASES = {
             'NAME': 'Photoalbum',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://user:pw@yourcluster'
+                'host': 'mongodb+srv://User:PW@cluster0.qsrce.mongodb.net/test?authSource=admin&replicaSet=atlas-titje6-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
             }  
         }
 }

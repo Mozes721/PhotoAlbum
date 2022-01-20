@@ -1,8 +1,13 @@
-# from rest_framework import ModelSerializer
+from dataclasses import field
+from rest_framework import serializers
+from .models import Album, Photo
 
-# from .models import Album 
+class AlbumSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Album 
+        fields = ('id', 'name')
 
-# class AlbumSerializer(ModelSerializer):
-#     class Meta:
-#         model = Album 
-#         fileds = ['id', 'name', 'about']
+class PhotoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Photo 
+        fields = ('headline', 'pub_date', 'image', 'album')

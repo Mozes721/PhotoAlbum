@@ -4,13 +4,17 @@
     <router-link to="/about">About</router-link> -->
     <table class="table"> 
       <thead>
-        <th>Name</th>
-        <th>About</th>
+        <th>Album</th>
+        <th>Headline</th>
+        <th>Date</th>
+        <th>Picture</th>
       </thead>
       <tbody>
         <tr v-for="photo in photoalbum" :key="photo.id">
-          <td>{{photo.name}}</td>
-          <td>{{photo.about}}</td>
+          <td>{{photo.album}}</td>
+          <td>{{photo.headline}}</td>
+          <td>{{photo.date}}</td>
+          <td>{{photo.picture}}</td>
         </tr>
       </tbody>
     </table>
@@ -54,6 +58,7 @@ export default {
   async created() {
     var response = await fetch('http://localhost:8000/api/photoalbum/');
     this.photoalbum = await response.json();
+    console.log(this.photoalbum)
   },
   methods: {
     async createAlbum() {
