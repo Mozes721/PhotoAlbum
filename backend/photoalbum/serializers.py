@@ -1,7 +1,7 @@
 from dataclasses import field
 from rest_framework import serializers
 from .models import Album, Photo
-
+  
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Album 
