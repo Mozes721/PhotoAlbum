@@ -24,8 +24,8 @@ class Photo(models.Model):
     headline = models.CharField(max_length=255)
     pub_date = models.DateField(default=datetime.date.today)
     image = models.ImageField(upload_to='entries/')
-    # album = models.ForeignKey(Album, on_delete=models.CASCADE, default=1)
-    album = models.ArrayReferenceField(to=Album, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, related_name='album', on_delete=models.CASCADE)
+    # album = models.ArrayReferenceField(to=Album, on_delete=models.CASCADE)
     def __str__(self):
         return self.headline
 
