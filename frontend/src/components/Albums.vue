@@ -1,8 +1,11 @@
 <template>
-  <div id="app">
-    <Albums />
+  <div>
+    <table class="table"> 
+      <thead v-for="album in albums" :key="album.id">
+        <th>{{album.name}}</th>
+      </thead>
+    </table>
   </div>
-
 </template>
 
 <style>
@@ -28,15 +31,25 @@
 }
 </style>
 <script>
-import Albums from './components/Albums.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    Albums
-  },
   data() {
+    return {
+      photoalbum: []
+    }
+  },
+  async created() {
+    var response = await fetch('http://localhost:8000/api/albums/');
+    this.albums = await response.json();
+    console.log(this.photoalbum)
+  },
+  methods: {
+    async createAlbum() {
+
+    }
   }
+
 }
 </script>
-
