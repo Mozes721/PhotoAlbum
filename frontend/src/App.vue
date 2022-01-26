@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <Albums />
+    <nav class="bg-indigo-700 shadow-lg">
+        <div class="sm:flex justify-around">
+          <span class="text-white font-semibold tracking-tight text-3xl font-bold p-3">PhotoAlbum</span>
+        </div>
+      <Albums />
+    </nav>
   </div>
 
 </template>
