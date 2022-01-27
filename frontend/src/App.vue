@@ -6,8 +6,9 @@
         </div>
       <Albums />
     </nav>
+    <!-- <Pictures /> -->
+    
   </div>
-
 </template>
 
 <style>
@@ -34,11 +35,14 @@
 </style>
 <script>
 import Albums from './components/Albums.vue'
+// import Pictures from './components/Pictures.vue'
+
 
 export default {
   name: 'App',
   components: {
     Albums
+   
   },
   data() {
   }
