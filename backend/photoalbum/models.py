@@ -12,6 +12,7 @@ grid_fs_storage = GridFSStorage(collection='photoalbum_photo', base_url=''.join(
 
 # Create your models here.
 class Album(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=140)
     
     def __str__(self):

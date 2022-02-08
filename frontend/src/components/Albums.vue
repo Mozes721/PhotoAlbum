@@ -10,8 +10,8 @@
 <div class="flex min-h-screen">
     <div class="w-1/5 bg-gray-50 border-r border-gray-200">
       <nav class="mt-10 px-6 ">
-              <a class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg" v-for="album in albums" :key="album.id">
-                <span class="mx-4 text-lg font-normal">
+              <a class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg" v-for="(album) in this.albums" :key="album.id">
+                <span class="mx-4 text-lg font-normal cursor-pointer" @click="albumSelect(album)">
                         {{album.name}}
                     </span>
                     <span class="flex-grow text-right">
@@ -73,17 +73,17 @@ export default {
   },
   data() {
     return {
-      photoalbum: []
+      albums: []
     }
   },
   async created() {
-    var response = await fetch('http://localhost:8000/api/albums/');
+    var response = await fetch('http://localhost:8000/api/albums');
     this.albums = await response.json();
-    console.log(this.photoalbum)
+    console.log(this.albums)
   },
   methods: {
-    async createAlbum() {
-
+    albumSelect(album) {
+      console.log(album.name, album.id)
     }
   }
 

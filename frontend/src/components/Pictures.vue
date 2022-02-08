@@ -8,7 +8,7 @@
         <th>Picture</th>
       </thead>
       <tbody>
-        <tr v-for="photo in photoalbum" :key="photo.id">
+        <tr v-for="photo in photos" :key="photo.id">
           <td>{{photo.album}}</td>
           <td>{{photo.headline}}</td>
           <td>{{photo.pub_date}}</td>
@@ -50,13 +50,13 @@ export default {
   name: 'App',
   data() {
     return {
-      photoalbum: []
+      photos: []
     }
   },
   async created() {
     var response = await fetch('http://localhost:8000/api/photos/');
-    this.photoalbum = await response.json();
-    console.log(this.photoalbum)
+    this.photos = await response.json();
+    console.log(this.photos)
   },
   methods: {
     async createAlbum() {

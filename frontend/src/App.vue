@@ -6,7 +6,7 @@
         </div>
       <Albums />
     </nav>
-    <!-- <Pictures /> -->
+    <Pictures />
     
   </div>
 </template>
