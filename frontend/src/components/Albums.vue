@@ -1,14 +1,4 @@
 <template>
-  <!-- <div>
-    
-    <table class="table"> 
-      <thead v-for="album in albums" :key="album.id">
-        <th>{{album.name}}</th>
-      </thead>
-    </table>
-  </div> -->
-<div class="flex min-h-screen">
-    <div class="w-1/5 bg-gray-50 border-r border-gray-200">
       <nav class="mt-10 px-6 ">
               <a class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg" v-for="(album) in this.albums" :key="album.id">
                 <span class="mx-4 text-lg font-normal cursor-pointer" @click="albumSelect(album)">
@@ -18,28 +8,6 @@
                     </span>
                 </a>
             </nav>
-    </div>
-    <div class="w-4/5 bg-gray-50 border-r border-gray-200">
-    <main>
-      <!-- <Pictures /> -->
-    </main>
-    </div>
-</div>
-<!-- <div class="relative bg-white dark:bg-gray-800">
-
-        <div class="w-74 h-screen shadow-lg">
-            <nav class="mt-10 px-6 ">
-              <a class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg" v-for="album in albums" :key="album.id">
-                <span class="mx-4 text-lg font-normal">
-                        {{album.name}}
-                    </span>
-                    <span class="flex-grow text-right">
-                    </span>
-                </a>
-            </nav>
-            
-        </div>
-    </div> -->
 </template>
 
 <style>
@@ -50,16 +18,13 @@
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 }
-
 #nav a {
   font-weight: bold;
   color: #2c3e50;
 }
-
 #nav a.router-link-exact-active {
   color: #42b983;
 }
@@ -83,9 +48,9 @@ export default {
   },
   methods: {
     albumSelect(album) {
+      this.$emit('changeAlbum', album.id)
       console.log(album.name, album.id)
     }
   }
-
 }
 </script>

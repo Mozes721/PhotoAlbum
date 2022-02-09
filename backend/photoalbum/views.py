@@ -14,18 +14,3 @@ class AlbumViewSet(ModelViewSet):
 class PhotoViewSet(ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
-
-# Create your views here.
-# def index(request):
-#     # photoalbum = Album.objects.all()
-#     photoalbum = []
-
-#     for picture in Photo.objects.all():
-#         photoalbum.append({
-#             'album': picture.album,
-#             'headline': picture.headline,
-#             # 'date': picture.pub_data,
-            
-#         })
-
-#     return JsonResponse(photoalbum, safe=False)

@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <table class="table"> 
+  <main>
+     <table class="table"> 
       <thead>
-        <th>Album</th>
         <th>Headline</th>
         <th>Date</th>
         <th>Picture</th>
-      </thead>
-      <tbody>
+      </thead> 
+       <tbody>
         <tr v-for="photo in photos" :key="photo.id">
-          <td>{{photo.album}}</td>
           <td>{{photo.headline}}</td>
           <td>{{photo.pub_date}}</td>
           <td>{{photo.image}}</td>
         </tr>
       </tbody>
-    </table>
+     </table>
 
-  </div>
-  <!-- <router-view/> -->
+  </main>
+   
 </template>
 
 <style>
@@ -44,25 +42,26 @@
 }
 </style>
 <script>
-import axios from 'axios'
 
 export default {
   name: 'App',
+  props: ['album'],
   data() {
     return {
-      photos: []
+      albums_pictures: [],
+      photos: [],
     }
   },
   async created() {
     var response = await fetch('http://localhost:8000/api/photos/');
-    this.photos = await response.json();
-    console.log(this.photos)
+    this.albums_pictures = await response.json();
   },
-  methods: {
-    async createAlbum() {
-
+  watch: {
+    async album(selected_album){
+      const selected = selected_album
+      this.photos = this.albums_pictures.filter(parent_id => parent_id.album === selected)
+      console.log(this.photos)
     }
   }
-
 }
 </script>
