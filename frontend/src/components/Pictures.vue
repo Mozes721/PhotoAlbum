@@ -10,7 +10,7 @@
         <tr v-for="photo in photos" :key="photo.id">
           <td>{{photo.headline}}</td>
           <td>{{photo.pub_date}}</td>
-          <td>{{photo.image}}</td>
+          <td><img :src='photo.image' /> </td>
         </tr>
       </tbody>
      </table>
