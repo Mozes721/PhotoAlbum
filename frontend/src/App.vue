@@ -6,10 +6,10 @@
         </div>
     </nav>
     <div class="flex min-h-screen">
-      <div class="w-1/5 bg-gray-50 border-r border-gray-200">
+      <div class="w-1/7 bg-gray-50 border-r border-gray-200">
           <Albums @changeAlbum="updateAlbum" />
       </div>
-      <div class="w-4/5 bg-gray-50 border-r border-gray-200">
+      <div class="w-6/7 bg-gray-50 border-r border-gray-200">
           <Pictures :album="this.selectedAlbum"/>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <main>
       <div class="box-border grid lg:grid-cols-3 gap-3 md:grid-cols-2 gap-2 sm:grid-cols-1 gap-1">
-          <div v-for="photo in photos" :key="photo.id" class="space-x-0.5">
+          <div v-for="photo in photos" :key="photo.id" >
               <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                   <a href="#">
                       <img class="rounded-t-lg object-scale-down h-48 w-96" :src='photo.image' />
