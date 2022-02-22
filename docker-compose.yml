@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+    django-photoalbum-api:
+        build: ./backend
+        ports: 
+            - 8000:5000
+
+    vue-photoalbum-app:
+        build: ./frontend/photoalbum
+        ports: 
+            - 8080:5000
