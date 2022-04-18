@@ -14,11 +14,11 @@
                     </span>
                 </div>
                 </a>
-                <a href="#" class="flex h-1-4 justify-center items-center w-1-3 ">
-                <div class="items-center ">
-                <img class="ml-2 -mr-1 w-8 h-8 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />
-                </div>
-                </a>
+                <router-link to="/add-album" class="flex h-1-4 justify-center items-center w-1-3 ">
+                  <div class="items-center ">
+                    <img class="ml-2 -mr-1 w-8 h-8 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />
+                  </div>
+                </router-link>
             </nav>
   </main>
 </template>

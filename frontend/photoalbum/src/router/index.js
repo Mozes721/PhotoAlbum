@@ -1,20 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Albums from '../components/Albums.vue'
-import Pictures from '../components/Pictures.vue'
+import Home from '@/views/Home.vue'
+import AddAlbum from '@/views/AddAlbum.vue'
+import AddPicture from '@/views/AddPicture.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Albums',
-    component: Albums
+    name: 'home',
+    component: Home
+  },
+
+  {
+    path: '/add-album',
+    name: 'add-album',
+    component: AddAlbum
   },
   {
-    path: '/pictures',
-    name: 'Pictures',
-    component: Pictures,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: '/add-picture',
+    name: 'add-picture',
+    component: AddPicture
   }
 ]
 const router = createRouter({

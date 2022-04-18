@@ -25,10 +25,10 @@
             <p>P.S you can delete albums same as pictures</p>
         </div>
         <div v-else>
-          <a href="#" class="flex h-1-4 justify-center items-center w-1-3">
+          <router-link to="/add-picture" class="flex h-1-4 justify-center items-center w-1-3">
               <img class="ml-2 -mr-1 w-14 h-14 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />  
-          </a>
-      </div>
+          </router-link>
+        </div>
       </div>
   </main>
    
@@ -40,6 +40,8 @@
 <script>
 import axios from 'axios'
 export default {
+  props: {
+  },
   name: 'App',
   props: ['album'],
   data() {
