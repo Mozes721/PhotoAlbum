@@ -25,7 +25,7 @@
             <p>P.S you can delete albums same as pictures</p>
         </div>
         <div v-else>
-          <router-link to="/add-picture" class="flex h-1-4 justify-center items-center w-1-3">
+          <router-link :to="{name: 'add-picture', params: { id: album }, }" class="flex h-1-4 justify-center items-center w-1-3">
               <img class="ml-2 -mr-1 w-14 h-14 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />  
           </router-link>
         </div>
@@ -40,8 +40,6 @@
 <script>
 import axios from 'axios'
 export default {
-  props: {
-  },
   name: 'App',
   props: ['album'],
   data() {
@@ -65,7 +63,6 @@ export default {
   },
   watch: {
     async album(selected_album){
-      // const selected = selected_album
       this.photos = this.albums_pictures.filter(parent_id => parent_id.album === selected_album)
       console.log(this.photos)
     }

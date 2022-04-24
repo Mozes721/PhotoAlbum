@@ -16,9 +16,10 @@ const routes = [
     component: AddAlbum
   },
   {
-    path: '/add-picture',
+    path: '/add-picture/:id',
     name: 'add-picture',
-    component: AddPicture
+    component: AddPicture,
+    props: true,
   }
 ]
 const router = createRouter({

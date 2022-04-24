@@ -48,11 +48,13 @@
 <script>
 
 export default {
-	name: 'AddAlbum',
+	name: 'AddPicture',
 	data() {
 		return {
+			album_id: this.$route.params.id,
 			headline: '',
-			image: ''
+			image: '',
+			destination: ''
 		}
 	},
 	methods: {
@@ -60,6 +62,7 @@ export default {
                 e.preventDefault()
                 if(!this.headline){
                     alert('Please add a headline name')
+		    console.log(`Album chosen by the name of ${this.album_id}`)
                     return
                 }
 		this.$router.push('/')
