@@ -60,10 +60,9 @@ export default {
 		const json = await response.json();
 		console.log(json);
 		} catch (e) {
-		pass
+		this.$router.push('/')
 		}
 		};
-		this.$router.push('/')
 		}
 	}
 }

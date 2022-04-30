@@ -4,7 +4,7 @@
           <div v-for="photo in photos" :key="photo.id">
               <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                   <a href="#">
-                      <img class="rounded-t-lg object-scale-down h-48 w-96" :src='photo.image' />
+                      <img class="rounded-t-lg object-scale-down h-48 w-96" :src="'http://localhost:8000' + photo.image" />
                   </a>
                 <div class="p-5"> 
                     <a href="#">
