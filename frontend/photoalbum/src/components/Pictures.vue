@@ -38,7 +38,6 @@
 
 </style>
 <script>
-import axios from 'axios'
 export default {
   name: 'App',
   props: ['album'],
@@ -50,7 +49,7 @@ export default {
   },
   async created() {
 	  try {
-	      const response = await fetch('http://localhost:8000/api/photos/')
+	      const response = await fetch('http://localhost:8000/photos/')
 	  
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);

@@ -54,7 +54,6 @@ export default {
 			album_id: this.$route.params.id,
 			headline: '',
 			image: '',
-			destination: ''
 		}
 	},
 	methods: {

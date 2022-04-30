@@ -28,7 +28,6 @@
 </style>
 <script>
 import Pictures from '../components/Pictures.vue'
-import axios from 'axios'
 
 export default {
   name: 'Albums',
@@ -42,7 +41,7 @@ export default {
   },
   async created() {
 	  try {
-		    const response = await fetch('http://localhost:8000/api/albums/')
+		    const response = await fetch('http://localhost:8000/albums/')
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }
