@@ -1,7 +1,7 @@
 <template>
 	<aside class="pt-6">
 		<div class="flex justify-center">
-		<form @submit="onSubmit" class="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+		<form @submit="addPicture" class="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
 			<div class="mb-4">
 			<label class="block text-gray-700 text-sm font-bold mb-2" for="headline">
 				Headline
@@ -57,14 +57,43 @@ export default {
 		}
 	},
 	methods: {
-        onSubmit(e){
+        async addPicture(e){
                 e.preventDefault()
                 if(!this.headline){
                     alert('Please add a headline name')
 		    console.log(`Album chosen by the name of ${this.album_id}`)
                     return
                 }
-		this.$router.push('/')
+		if(!this.image){
+                    alert('Please add a image')
+                    return
+                }
+		else {
+		try {
+		
+		const response = await fetch('http://localhost:8000/photos/', {
+			method: "POST",
+			body: JSON.stringify(
+				{
+				headline: this.headline,
+				image: this.image,
+				album: this.album_id
+
+				}),
+	
+			headers: {
+			"Content-Type": "application/json",
+		
+			},
+			mode: "no-cors"
+			});
+		const json = await response.json();
+		console.log(json);
+		
+		} catch (e) {
+		// this.$router.push('/')
+		}
+		};
 		},
 	onFileChange(e) {
 	var files = e.target.files || e.dataTransfer.files;
@@ -81,6 +110,7 @@ export default {
 		vm.image = e.target.result;
 	};
 	reader.readAsDataURL(file);
+
 	},
 	removeImage: function (e) {
 	this.image = '';
