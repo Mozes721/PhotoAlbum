@@ -29,6 +29,6 @@ class Photo(models.Model):
     # album = models.ArrayReferenceField(to=Album, on_delete=models.CASCADE)
     def __str__(self):
         return self.headline
- 
+  
     class Meta:
         ordering = ['headline']
