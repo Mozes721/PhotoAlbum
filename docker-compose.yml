@@ -1,5 +1,9 @@
 version: '3.8'
+<<<<<<< HEAD
   
+=======
+ 
+>>>>>>> 7112f93 (yml and Dockerfiles added)
 services:
     django-photoalbum-api:
         build: ./backend
