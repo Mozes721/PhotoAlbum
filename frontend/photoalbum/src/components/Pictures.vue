@@ -23,12 +23,20 @@
             <p>Select your album or create a new one</p>
             <p>Then check your pictures and add new ones</p>
             <p>P.S you can delete albums same as pictures</p>
+<<<<<<< HEAD
         </div>
         <div v-else>
           <router-link :to="{name: 'add-picture', params: { id: album }, }" class="flex h-1-4 justify-center items-center w-1-3">
               <img class="ml-2 -mr-1 w-14 h-14 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />  
           </router-link>
+=======
+>>>>>>> fb5c070 (added add button)
         </div>
+        <div v-else>
+          <a href="#" class="flex h-1-4 justify-center items-center w-1-3">
+              <img class="ml-2 -mr-1 w-14 h-14 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />  
+          </a>
+      </div>
       </div>
   </main>
    
@@ -54,7 +62,11 @@ export default {
   },
   async created() {
 	  try {
+<<<<<<< HEAD
 	      const response = await fetch('http://localhost:8000/photos/')
+=======
+	      const response = await fetch('http://localhost:8000/api/photos/')
+>>>>>>> fb5c070 (added add button)
 	  
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
@@ -67,6 +79,10 @@ export default {
   },
   watch: {
     async album(selected_album){
+<<<<<<< HEAD
+=======
+      // const selected = selected_album
+>>>>>>> fb5c070 (added add button)
       this.photos = this.albums_pictures.filter(parent_id => parent_id.album === selected_album)
       console.log(this.photos)
     }

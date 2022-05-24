@@ -6,12 +6,17 @@
                 <span class="mx-4 text-lg font-normal cursor-pointer" @click="albumSelect(album)">
                         {{album.name}}
                     </span>
+<<<<<<< HEAD
                     <span class="mx-4 text-lg font-normal cursor-pointer" @click="Delete()">
+=======
+                    <span class="mx-4 text-lg font-normal cursor-pointer">
+>>>>>>> fb5c070 (added add button)
                       <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-blue-red dark:focus:ring-blue-red">
                           Delete
                           <img class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" src='../../assets/delete.png' />
                       </a>
                     </span>
+<<<<<<< HEAD
                     <my-modal-component v-show="openModal" >
                       <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
 	<div class="relative p-4 w-full max-w-md h-full md:h-auto">
@@ -31,6 +36,13 @@
 	</div>
 	</div>
                     </my-modal-component>
+=======
+                </div>
+                </a>
+                <a href="#" class="flex h-1-4 justify-center items-center w-1-3 ">
+                <div class="items-center ">
+                <img class="ml-2 -mr-1 w-8 h-8 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />
+>>>>>>> fb5c070 (added add button)
                 </div>
                 </a>
                 <router-link to="/add-album" class="flex h-1-4 justify-center items-center w-1-3 ">
@@ -63,7 +75,11 @@ export default {
   },
   async created() {
 	  try {
+<<<<<<< HEAD
 		    const response = await fetch('http://localhost:8000/albums/')
+=======
+		    const response = await fetch('http://localhost:8000/api/albums/')
+>>>>>>> fb5c070 (added add button)
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
     }
