@@ -5,7 +5,7 @@ from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from .models import Album, Photo
 from .serializers import AlbumSerializer, PhotoSerializer
-
+from .forms import UploadForm
 
 
 
@@ -36,7 +36,7 @@ def PhotoAPI(request, id=0):
         photo_serializer = PhotoSerializer(photo, many=True)
         return JsonResponse(photo_serializer.data, safe=False)
 
-    elif request.method=='POST':
+    elif request.method=='POST' or request.method=='FILES':
         photo_data=JSONParser().parse(request)
         photo_serializer = PhotoSerializer(data=photo_data)
         if photo_serializer.is_valid():

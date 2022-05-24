@@ -38,8 +38,13 @@
 
 </style>
 <script>
+import Delete from '../components/Delete.vue'
+
 export default {
   name: 'App',
+  components: {
+    Delete
+  },
   props: ['album'],
   data() {
     return {

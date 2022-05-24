@@ -1,7 +1,7 @@
 <template>
 	<aside class="pt-6">
 		<div class="flex justify-center">
-		<form @submit="addPicture" class="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+		<form @submit="addPicture" class="bg-blue-100 shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
 			<div class="mb-4">
 			<label class="block text-gray-700 text-sm font-bold mb-2" for="headline">
 				Headline
@@ -26,7 +26,7 @@
 						transition
 						ease-in-out
 						m-0
-						focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile" accept='image/png, image/jpeg'>
+						focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" ref="file" type="file" id="formFile" accept='image/png, image/jpeg'>
 				<p class="text-red-500 text-xs italic">Please choose .jpg or .png image.</p>
 				</div>
 			</div>
@@ -54,36 +54,58 @@ export default {
 			album_id: this.$route.params.id,
 			headline: '',
 			image: '',
+			file: '',
+			existing_photos: []
+		}
+	},
+	async created() {
+	  try {
+	      const response = await fetch('http://localhost:8000/photos/')
+		
+		if (!response.ok) {
+		throw new Error(`Error! status: ${response.status}`);
+		}
+		const json = await response.json();
+		this.existing_photos = json.filter(parent_id => parent_id.album_id === this.album_id)
+		console.log(this.existing_photos)
+		}
+		catch (err) {
+			console.log(err);
 		}
 	},
 	methods: {
         async addPicture(e){
                 e.preventDefault()
+		console.log(this.image)
+	
                 if(!this.headline){
                     alert('Please add a headline name')
-		    console.log(`Album chosen by the name of ${this.album_id}`)
                     return
                 }
 		if(!this.image){
                     alert('Please add a image')
                     return
-                }
+                }if(this.existing_photos.some(existing_photos => existing_photos.headline.toLowerCase() === this.headline.toLowerCase())){
+		    alert('Picture with this type of headline already exists in this album')
+		    this.new_album = ''
+                    return
+		}
 		else {
 		try {
-		
-		const response = await fetch('http://localhost:8000/photos/', {
+		let formData = new FormData();
+		formData.append('image', this.file)
+		const response = await fetch('http://localhost:8000/photos', {
 			method: "POST",
 			body: JSON.stringify(
 				{
 				headline: this.headline,
-				image: this.image,
-				album: this.album_id
-
+				image: '../assets/logo.png',
+				album: this.album_id,
 				}),
 	
 			headers: {
-			"Content-Type": "application/json",
-		
+			// 'Accept': 'application/json',
+        		'Content-Type': 'multipart/form-data',
 			},
 			mode: "no-cors"
 			});
@@ -92,28 +114,34 @@ export default {
 		
 		} catch (e) {
 		// this.$router.push('/')
+		console.log(this.image)
 		}
 		};
 		},
-	onFileChange(e) {
-	var files = e.target.files || e.dataTransfer.files;
+	onFileChange() {
+	var files = this.$refs.file.files
+	this.file = this.$refs.file.files.item(0);
 	if (!files.length)
 		return;
 	this.createImage(files[0]);
 	},
 	createImage(file) {
-	var image = new Image();
+
 	var reader = new FileReader();
 	var vm = this;
-
+	
+	
 	reader.onload = (e) => {
 		vm.image = e.target.result;
+		this.image = vm.image;
+		// this.file = { encodedImage: this.image }
 	};
 	reader.readAsDataURL(file);
 
 	},
 	removeImage: function (e) {
 	this.image = '';
+	this.file = '';
 	}
 	}
 }

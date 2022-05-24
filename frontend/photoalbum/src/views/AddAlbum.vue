@@ -32,6 +32,20 @@ export default {
 	    await this.getAlbums();
 	},
 	methods: {
+
+	async getAlbums() {
+	  try {
+		    const response = await fetch('http://localhost:8000/albums/')
+	if (!response.ok) {
+	throw new Error(`Error! status: ${response.status}`);
+	}
+		this.albums = await response.json()
+		console.log(this.albums)
+	}
+	catch (err) {
+		console.log(err);
+	}
+  	},
 	
         async addAlbum(e) {
 		e.preventDefault()
@@ -39,13 +53,15 @@ export default {
 		if(!this.new_album){
                     alert('Please add a album name')
                     return
-                }if(this.albums.some(album => album.name === this.new_album)){
+                }if(this.albums.some(album => album.name.toLowerCase() === this.new_album.toLowerCase())){
 		    alert('Album by this name already exists')
+		    this.new_album = ''
                     return
 		}
 		else {
 		try {
 		const response = await fetch('http://localhost:8000/albums', {
+			
 			method: "POST",
 			body: JSON.stringify(
 				{
@@ -53,7 +69,6 @@ export default {
 				}),
 			headers: {
 			"Content-Type": "application/json",
-		
 			},
 			mode: "no-cors"
 			});
