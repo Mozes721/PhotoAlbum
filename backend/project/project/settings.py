@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n8uoujn#cg=nj-rph7y1s_yebkfxzwk!()j@-hzm+hq8#34lyj'
+SECRET_KEY = 'your secret key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,7 +94,7 @@ DATABASES = {
             'NAME': 'Photoalbum',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://Mozes:Asebomu12@cluster0.qsrce.mongodb.net/test?authSource=admin&replicaSet=atlas-titje6-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
+                'host': 'mongodb+srv://Table:PW@cluster0.qsrce.mongodb.net/test?authSource=admin&replicaSet=atlas-titje6-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
             }  
         }
 }
