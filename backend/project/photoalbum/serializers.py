@@ -1,6 +1,7 @@
 from dataclasses import field
 from rest_framework import serializers
 from .models import Album, Photo
+from drf_extra_fields.fields import Base64ImageField
 
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,8 +9,6 @@ class AlbumSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class PhotoSerializer(serializers.ModelSerializer):
-    # album = serializers.StringRelatedField(many=True)
-    # album = 'asdsadsa'
     album = AlbumSerializer
 
     class Meta:

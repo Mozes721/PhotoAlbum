@@ -1,50 +1,41 @@
-from django.http.response import JsonResponse
-from django.http import JsonResponse
 
-from rest_framework.parsers import JSONParser
-from django.views.decorators.csrf import csrf_exempt
+from django.http.response import JsonResponse
+from django.shortcuts import render
+from django.http import JsonResponse
+from yaml import serialize
+from rest_framework import mixins, viewsets
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets, filters, generics, permissions
+from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.views import APIView
+from rest_framework import status
+
 from .models import Album, Photo
 from .serializers import AlbumSerializer, PhotoSerializer
-from .forms import UploadForm
 
 
+class AlbumViewSet(ModelViewSet):
+    # permission_classes = [permissions.IsAuthenticated]
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
 
-@csrf_exempt
-def AlbumAPI(request, id=0):
-    if request.method=='GET':
-        albums = Album.objects.all()
-        album_serializer = AlbumSerializer(albums, many=True)
-        return JsonResponse(album_serializer.data, safe=False)
+# class ImageUpload(APIView):
+#     permission_classes = [permissions.IsAuthenticated]
 
-    elif request.method=='POST':
-        album_data=JSONParser().parse(request)
-        album_serializer = AlbumSerializer(data=album_data)
-        if album_serializer.is_valid():
-            album_serializer.save()
-            return JsonResponse("Added Successfully!!" , safe=False)
-        return JsonResponse("Failed to Add.",safe=False)
+class PhotoViewSet(mixins.ListModelMixin,
+                     viewsets.GenericViewSet):
+    # permission_classes = [permissions.IsAuthenticated]
+    queryset = Photo.objects.all()
+    parser_classes = [MultiPartParser, FormParser]
+    serializer_class = PhotoSerializer
 
-    elif request.method=='DELETE':
-        album=Album.objects.get(AlbumID=id)
-        album.delete()
-        return JsonResponse("Deleted Succeffully!!", safe=False)
-
-@csrf_exempt
-def PhotoAPI(request, id=0):
-    if request.method=='GET':
-        photo = Photo.objects.all()
-        photo_serializer = PhotoSerializer(photo, many=True)
-        return JsonResponse(photo_serializer.data, safe=False)
-
-    elif request.method=='POST' or request.method=='FILES':
-        photo_data=JSONParser().parse(request)
-        photo_serializer = PhotoSerializer(data=photo_data)
-        if photo_serializer.is_valid():
-            photo_serializer.save()
-            return JsonResponse("Added Successfully!!" , safe=False)
-        return JsonResponse("Failed to Add.",safe=False)
-
-    elif request.method=='DELETE':
-        photo=Photo.objects.get(PhotoID=id)
-        photo.delete()
-        return JsonResponse("Deleted Succeffully!!", safe=False)
+    
+    def post(self, request, format=None):
+        print(request.data)
+        serialize = PhotoSerializer(data=request.data)
+        if serialize.is_valid():
+            serialize.save()
+            return Response(serialize.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serialize.data, status=status.HTTP_400_BAD_REQUEST)

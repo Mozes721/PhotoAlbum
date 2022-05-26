@@ -26,7 +26,7 @@
 						transition
 						ease-in-out
 						m-0
-						focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" ref="file" type="file" id="formFile" accept='image/png, image/jpeg'>
+						focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" ref="file" type="file" id="formFile" name="image" accept='image/png, image/jpeg'>
 				<p class="text-red-500 text-xs italic">Please choose .jpg or .png image.</p>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
 	name: 'AddPicture',
 	data() {
@@ -60,7 +60,7 @@ export default {
 	},
 	async created() {
 	  try {
-	      const response = await fetch('http://localhost:8000/photos/')
+	      const response = await fetch('http://localhost:8000/api/photos/')
 		
 		if (!response.ok) {
 		throw new Error(`Error! status: ${response.status}`);
@@ -91,50 +91,43 @@ export default {
                     return
 		}
 		else {
-		try {
-		let formData = new FormData();
-		formData.append('image', this.file)
-		const response = await fetch('http://localhost:8000/photos', {
-			method: "POST",
-			body: JSON.stringify(
-				{
-				headline: this.headline,
-				image: '../assets/logo.png',
-				album: this.album_id,
-				}),
-	
-			headers: {
-			// 'Accept': 'application/json',
-        		'Content-Type': 'multipart/form-data',
-			},
-			mode: "no-cors"
-			});
-		const json = await response.json();
-		console.log(json);
-		
-		} catch (e) {
-		// this.$router.push('/')
-		console.log(this.image)
-		}
+		var formdata = new FormData();
+		formdata.append("image", this.file, this.file.name);
+		formdata.append("headline", this.headline);
+		formdata.append("album", this.album_id);
+		formdata.append("", this.file, "file");
+
+		var requestOptions = {
+		method: 'POST',
+		body: formdata,
+		redirect: 'follow'
 		};
-		},
+
+		fetch("http://localhost:8000/api/photos/", requestOptions)
+		.then(response => response.text())
+		.then(result => console.log(result))
+		.catch(error => console.log('error', error));
+
+		setTimeout(() => {  this.$router.push('/') }, 2000);
+		
+		}
+	},
 	onFileChange() {
 	var files = this.$refs.file.files
 	this.file = this.$refs.file.files.item(0);
+
 	if (!files.length)
 		return;
-	this.createImage(files[0]);
+	this.createImage(this.file);
 	},
 	createImage(file) {
 
 	var reader = new FileReader();
 	var vm = this;
 	
-	
 	reader.onload = (e) => {
 		vm.image = e.target.result;
 		this.image = vm.image;
-		// this.file = { encodedImage: this.image }
 	};
 	reader.readAsDataURL(file);
 

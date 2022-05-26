@@ -35,7 +35,7 @@ export default {
 
 	async getAlbums() {
 	  try {
-		    const response = await fetch('http://localhost:8000/albums/')
+		    const response = await fetch('http://localhost:8000/api/albums/')
 	if (!response.ok) {
 	throw new Error(`Error! status: ${response.status}`);
 	}
@@ -59,28 +59,27 @@ export default {
                     return
 		}
 		else {
-		try {
-		const response = await fetch('http://localhost:8000/albums', {
-			
-			method: "POST",
-			body: JSON.stringify(
-				{
-				name: this.new_album
-				}),
-			headers: {
-			"Content-Type": "application/json",
-			},
-			mode: "no-cors"
-			});
-		const json = await response.json();
-		console.log(json);
-		} catch (e) {
-		this.$router.push('/')
-		}
+		
+		var formdata = new FormData();
+		formdata.append("name", this.new_album);
+
+		var requestOptions = {
+		method: 'POST',
+		body: formdata,
+		redirect: 'follow'
 		};
-		}
+
+		fetch("http://localhost:8000/api/albums/", requestOptions)
+		.then(response => response.text())
+		.then(result => console.log(result))
+		.catch(error => console.log('error', error));
+
+		this.new_album = ''
+		setTimeout(() => {  this.$router.push('/') }, 2000);
+
 	}
+	
 }
-
-
+}
+}
 </script>
