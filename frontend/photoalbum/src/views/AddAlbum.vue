@@ -75,7 +75,7 @@ export default {
 		.catch(error => console.log('error', error));
 
 		this.new_album = ''
-		setTimeout(() => {  this.$router.push('/') }, 2000);
+		setTimeout(() => {  this.$router.push('/') }, 000);
 
 	}
 	

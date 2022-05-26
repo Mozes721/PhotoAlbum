@@ -3,7 +3,7 @@ venv
 __pycache__/
 
 .gitignore
-
+project/entries/.
 Pipfile
 
 Pipfile.lock
