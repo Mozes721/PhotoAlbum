@@ -1,7 +1,7 @@
 <template>
   <main>
       <div class="box-border grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-1 p-4">
-          <div v-for="photo in photos" :key="photo.id">
+          <div v-for="photo in albums_pictures" :key="photo.id">
               <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                   <a href="#">
                       <img class="rounded-t-lg object-scale-down h-48 w-96" :src="photo.image" />
@@ -18,11 +18,12 @@
                 </div>
               </div>
           </div>
-          <div v-if="!photos.length">
-            <h3>Welcome to your own Photoalbum Storage!</h3>
-            <p>Select your album or create a new one</p>
-            <p>Then check your pictures and add new ones</p>
-            <p>P.S you can delete albums same as pictures</p>
+        
+        <div v-if="!albums_pictures.length">
+            <h3>Add your first image</h3>
+            <router-link :to="{name: 'add-picture', params: { id: album }, }" class="flex h-1-4 justify-center items-center w-1-3">
+              <img class="ml-2 -mr-1 w-14 h-14 hover:bg-green-400" fill="currentColor" viewBox="0 0 20 20" src='../../assets/plus.png' />  
+          </router-link>
         </div>
         <div v-else>
           <router-link :to="{name: 'add-picture', params: { id: album }, }" class="flex h-1-4 justify-center items-center w-1-3">
@@ -30,8 +31,7 @@
           </router-link>
         </div>
       </div>
-  </main>
-   
+      </main>
 </template>
 
 <style>
@@ -45,29 +45,19 @@ export default {
   components: {
     Delete
   },
-  props: ['album'],
+  props: ['album', 'photos'],
   data() {
     return {
       albums_pictures: [],
-      photos: [],
     }
   },
-  async created() {
-	  try {
-	      const response = await fetch('http://localhost:8000/api/photos/')
-    if (!response.ok) {
-      throw new Error(`Error! status: ${response.status}`);
-    }
-    this.albums_pictures = await response.json();
-    }
-    catch (err) {
-        console.log(err);
-    }
+  created() {
+    console.log(this.album)
+    this.albums_pictures = this.photos.filter(parent_id => parent_id.album === this.album)
   },
   watch: {
-    async album(selected_album){
-      this.photos = this.albums_pictures.filter(parent_id => parent_id.album === selected_album)
-      console.log(this.photos)
+    album(selected_album){
+      this.albums_pictures = this.photos.filter(parent_id => parent_id.album === selected_album)
     }
   }
 }

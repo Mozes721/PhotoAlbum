@@ -5,7 +5,15 @@
 		<Albums @changeAlbum="updateAlbum" />
 	    </div>
 	    <div class="col-span-4 bg-gray-50 border-r border-gray-200">
-		<Pictures :album="this.selectedAlbum"/>
+        <main v-if="!this.selectedAlbum">
+          <h3>Welcome to your own Photoalbum Storage!</h3>
+          <p>Select your album or create a new one</p>
+          <p>Then check your pictures and add new ones</p>
+          <p>P.S you can delete albums same as pictures</p>
+        </main>
+        <main v-else>
+          <Pictures v-bind:photos="photos" :album="this.selectedAlbum"/>
+        </main>
 	    </div>
 	</div>
     </main>
@@ -22,9 +30,24 @@ export default {
   },
   data() {
     return {
-      selectedAlbum: ''
+      selectedAlbum: '',
+      photos: []
     }
   },
+  async created() {
+	  try {
+	      const response = await fetch('http://localhost:8000/api/photos/')
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+    this.photos = await response.json();
+    console.log("data fetched")
+    }
+    catch (err) {
+        console.log(err);
+    }
+  },
+
   methods: {
     updateAlbum(value) {
       this.selectedAlbum = value 
