@@ -6,10 +6,26 @@
 	    </div>
 	    <div class="col-span-4 bg-gray-50 border-r border-gray-200">
         <main v-if="!this.selectedAlbum">
-          <h3>Welcome to your own Photoalbum Storage!</h3>
-          <p>Select your album or create a new one</p>
-          <p>Then check your pictures and add new ones</p>
-          <p>P.S you can delete albums same as pictures</p>
+        <div class="pt-6 md:p-8 text-center m space-y-4">
+          <blockquote>
+            <p class="text-lg font-medium">
+            <ul class="text-3xl font-italic mb-7">
+           <li>Welcome to your own Photoalbum Storage!</li>
+            <li>Select your album or create a new one</li>
+            <li>Then check your pictures and add new ones</li>
+            <li>P.S you can delete albums same as pictures</li>
+            </ul>
+            </p>
+          </blockquote>
+            <figcaption class="font-medium">
+                <div class="text-sky-500 dark:text-sky-400">
+                  Richard Taujenis
+                </div>
+                <div class="text-slate-700 dark:text-slate-500">
+                Full Stack Developer
+                </div>
+          </figcaption>
+        </div>
         </main>
         <main v-else>
           <div v-if="!toggleModal">
@@ -56,6 +72,7 @@ export default {
         console.log(err);
     }
   },
+
   methods: {
     updateAlbum(value) {
       this.selectedAlbum = value 
@@ -65,6 +82,7 @@ export default {
       this.toggleModal = true
     },
     cancelModal() {
+
       this.toggleModal = false
     }
   }
