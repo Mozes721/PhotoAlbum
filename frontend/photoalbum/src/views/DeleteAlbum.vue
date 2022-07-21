@@ -1,4 +1,4 @@
-<template>
+<template> 
 <!-- Main modal -->
 <div class="grid items-center justify-center h-screen ">
     <div class="relative p-4 w-full max-w-2xl h-full md:h-auto ">
