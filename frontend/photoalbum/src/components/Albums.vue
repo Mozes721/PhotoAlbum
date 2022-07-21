@@ -7,14 +7,12 @@
                         {{album.name}}
                     </span>
                     <span class="mx-4 text-lg font-normal cursor-pointer" @click="Delete()">
-                      <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-blue-red dark:focus:ring-blue-red">
+                      <router-link to="/delete-album"  class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-blue-red dark:focus:ring-blue-red">
                           Delete
                           <img class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" src='../../assets/delete.png' />
-                      </a>
+                      </router-link>
                     </span>
-                    <!-- <my-modal-component v-show="openModal" >
-                      <Delete />
-                    </my-modal-component> -->
+                
                 </div>
                 </a>
                 <router-link to="/add-album" class="flex h-1-4 justify-center items-center w-1-3 ">
@@ -31,13 +29,11 @@
 </style>
 <script>
 import Pictures from '../components/Pictures.vue'
-import Delete from '../components/Delete.vue'
 
 export default {
   name: 'Albums',
   components: {
     Pictures,
-    Delete
   },
   data() {
     return {
@@ -60,7 +56,6 @@ export default {
   methods: {
     albumSelect(album) {
       this.$emit('changeAlbum', album.id)
-      console.log(album.name, album.id)
     },
     Delete() {
       this.showModal = true;

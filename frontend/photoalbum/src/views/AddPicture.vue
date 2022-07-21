@@ -46,16 +46,15 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
 	name: 'AddPicture',
 	data() {
 		return {
-			album_id: this.$route.params.id,
+			albumID: this.$route.params.id,
 			headline: '',
 			image: '',
 			file: '',
-			existing_photos: []
+			existingPhotos: []
 		}
 	},
 	async created() {
@@ -66,8 +65,8 @@ export default {
 		throw new Error(`Error! status: ${response.status}`);
 		}
 		const json = await response.json();
-		this.existing_photos = json.filter(parent_id => parent_id.album_id === this.album_id)
-		console.log(this.existing_photos)
+		this.existingPhotos = json.filter(parent_id => parent_id.albumID === this.albumID)
+		console.log(this.existingPhotos)
 		}
 		catch (err) {
 			console.log(err);
@@ -85,7 +84,7 @@ export default {
 		if(!this.image){
                     alert('Please add a image')
                     return
-                }if(this.existing_photos.some(existing_photos => existing_photos.headline.toLowerCase() === this.headline.toLowerCase())){
+                }if(this.existingPhotos.some(existingPhotos => existingPhotos.headline.toLowerCase() === this.headline.toLowerCase())){
 		    alert('Picture with this type of headline already exists in this album')
 		    this.new_album = ''
                     return
@@ -94,7 +93,7 @@ export default {
 		var formdata = new FormData();
 		formdata.append("image", this.file, this.file.name);
 		formdata.append("headline", this.headline);
-		formdata.append("album", this.album_id);
+		formdata.append("album", this.albumID);
 		formdata.append("", this.file, "file");
 
 		var requestOptions = {

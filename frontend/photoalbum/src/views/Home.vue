@@ -12,7 +12,12 @@
           <p>P.S you can delete albums same as pictures</p>
         </main>
         <main v-else>
-          <Pictures v-bind:photos="photos" :album="this.selectedAlbum"/>
+          <div v-if="!toggleModal">
+          <Pictures v-bind:photos="photos" :album="this.selectedAlbum" v-on:getPhoto="getCurrentPhoto($event)"/>
+          </div>
+          <div v-if="toggleModal">
+            <ToggleDeletePicture v-on:cancelModal="cancelModal()"/>
+          </div>
         </main>
 	    </div>
 	</div>
@@ -22,16 +27,20 @@
 <script>
 import Albums from '../components/Albums.vue'
 import Pictures from '../components/Pictures.vue'
+import ToggleDeletePicture from '../components/ToggleDeletePicture.vue'
 export default {
   name: 'App',
   components: {
     Albums,
-    Pictures
-  },
+    Pictures,
+    ToggleDeletePicture,
+},
   data() {
     return {
       selectedAlbum: '',
-      photos: []
+      photos: [],
+      photoID: '',
+      toggleModal: false
     }
   },
   async created() {
@@ -47,10 +56,16 @@ export default {
         console.log(err);
     }
   },
-
   methods: {
     updateAlbum(value) {
       this.selectedAlbum = value 
+    },
+    getCurrentPhoto(photo) {
+      this.photoID = photo
+      this.toggleModal = true
+    },
+    cancelModal() {
+      this.toggleModal = false
     }
   }
 }
