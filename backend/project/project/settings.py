@@ -94,7 +94,7 @@ DATABASES = {
             'NAME': 'Photoalbum',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://Table:PW@cluster0.qsrce.mongodb.net/test?authSource=admin&replicaSet=atlas-titje6-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
+                'host': 'mongodb+srv://Mozes:Asebomu12@cluster0.qsrce.mongodb.net/test?authSource=admin&replicaSet=atlas-titje6-shard-0&readPreference=primary&ssl=true'
             }  
         }
 }
