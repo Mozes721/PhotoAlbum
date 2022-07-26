@@ -8,9 +8,9 @@
                   </a>
                 <div class="p-5"> 
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{photo.pub_date}}</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{photo.headline}}</h5>
                     </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{photo.headline}}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{photo.pub_date}}</p>
                       <button @click="runDeleteModal(photo)" class="inline-flex items-center py-2 px-3  font-medium image-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-blue-red dark:focus:ring-blue-red">
                           Delete
                           <img class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" src='../../assets/delete.png' />
