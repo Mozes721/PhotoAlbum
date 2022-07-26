@@ -1,4 +1,4 @@
-<template>
+<template> 
     <div class="grid items-center justify-center h-screen bg-gray-700">
         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
