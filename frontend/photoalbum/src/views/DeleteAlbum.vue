@@ -6,7 +6,7 @@
         <div class="relative bg-gray rounded-lg shadow dark:bg-gray-700">
             <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-800 bg-blue-300">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Terms of Service
+                    Terms of Service 
                 </h3>
             </div>
             <div class="p-6 space-y-6">
