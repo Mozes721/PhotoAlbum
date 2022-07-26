@@ -1,9 +1,8 @@
 <template>
-    <main>
 	<div class="grid grid-cols-5 gap-2 min-h-screen  divide-gray-400">
-	    <div class="bg-gray-50 border-r border-gray-200">
-		<Albums @changeAlbum="updateAlbum" />
-	    </div>
+	    <main class="bg-gray-50 border-r border-gray-200">
+		    <Albums @changeAlbum="updateAlbum" />
+	    </main>
 	    <div class="col-span-4 bg-gray-50 border-r border-gray-200">
         <main v-if="!this.selectedAlbum">
         <div class="pt-6 md:p-8 text-center m space-y-4">
@@ -28,35 +27,25 @@
         </div>
         </main>
         <main v-else>
-          <div v-if="!toggleModal">
           <Pictures v-bind:photos="photos" :album="this.selectedAlbum" v-on:getPhoto="getCurrentPhoto($event)"/>
-          </div>
-          <div v-if="toggleModal">
-            <ToggleDeletePicture v-on:cancelModal="cancelModal()"/>
-          </div>
         </main>
-	    </div>
-	</div>
-    </main>
+        </div>
+    </div>
 </template>
 
 <script>
 import Albums from '../components/Albums.vue'
 import Pictures from '../components/Pictures.vue'
-import ToggleDeletePicture from '../components/ToggleDeletePicture.vue'
 export default {
   name: 'App',
   components: {
     Albums,
     Pictures,
-    ToggleDeletePicture,
 },
   data() {
     return {
       selectedAlbum: '',
       photos: [],
-      photoID: '',
-      toggleModal: false
     }
   },
   async created() {
@@ -77,14 +66,6 @@ export default {
     updateAlbum(value) {
       this.selectedAlbum = value 
     },
-    getCurrentPhoto(photo) {
-      this.photoID = photo
-      this.toggleModal = true
-    },
-    cancelModal() {
-
-      this.toggleModal = false
-    }
   }
 }
 </script>

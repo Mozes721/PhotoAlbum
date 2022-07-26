@@ -3,7 +3,7 @@ import Home from '@/views/Home.vue'
 import AddAlbum from '@/views/AddAlbum.vue'
 import AddPicture from '@/views/AddPicture.vue'
 import DeleteAlbum from '@/views/DeleteAlbum.vue'
-
+import DeletePicture from '@/views/DeletePicture.vue'
 const routes = [
   {
     path: '/',
@@ -22,11 +22,15 @@ const routes = [
     props: true,
   },
   {
-    path: '/delete-album',
-    name: 'delete-album',
+    path: "/delete-album/:id",
+    name: "delete-album",
     component: DeleteAlbum
   },
-  
+  {
+    path: '/delete-picture/:id',
+    name: 'delete-picture',
+    component: DeletePicture
+  },
 ]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

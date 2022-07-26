@@ -26,17 +26,20 @@
 <script>
 export default {
 	name: 'DeleteAlbum',
-	props: ["albumID"],
-
+    data() {
+        return {
+        albumID: this.$route.params.id
+        }
+    },
     methods: {
-    deletePicture() {
+    deleteAlbum() {
         var formdata = new FormData();
         var requestOptions = {
         method: 'DELETE',
         body: formdata,
         redirect: 'follow'
         };
-        fetch(`http://127.0.0.1:8000/api/albums/${albumID}/`, requestOptions)
+        fetch(`http://127.0.0.1:8000/api/albums/${this.albumID}/`, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
